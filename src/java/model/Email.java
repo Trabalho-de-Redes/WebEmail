@@ -93,9 +93,13 @@ public class Email {
         }
     }
 
-    public String guardar(String senha) {
+     public String retornaSMTP(String email) {
 
-        return senha;
+       String[] partir ;
+       
+       partir = email.split("@");
+       String smtp = "smtp."+partir[1];
+       return smtp;
     }
 
     public String getSenha() {

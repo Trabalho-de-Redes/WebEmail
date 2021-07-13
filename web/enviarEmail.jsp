@@ -16,7 +16,8 @@
         String senha = request.getParameter("senha");
         email.setEmailFrom(userEmail);
         email.setSenha(senha);
-        email.setServerEmail("smtp.gmail.com");
+        email.setServerEmail(email.retornaSMTP(userEmail));
+       
        
      %>
      
