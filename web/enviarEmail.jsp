@@ -32,6 +32,7 @@
             <input id="bcc" type="text" name="bcc" placeholder="Bcc"/>
             <input id="subj" type="text" name="subject" placeholder="Subject"/>
             <textarea  name="mensagem"  id="msg" cols="30" rows="10" placeholder="Mensagem"></textarea>
+            <input id="arq" name="arq" type="file">
             <input name="senha" type="hidden" readonly="readonly" value="<% out.write(email.getSenha());%>" >
             <button>Enviar</button>
           </form>

@@ -29,6 +29,7 @@
             boolean result = email.enviarEmail(request.getParameter("mailServer"),
                     request.getParameter("email"),
                     request.getParameter("to"),
+                    request.getParameter("cc"),
                     request.getParameter("subject"),
                     request.getParameter("mensagem"),
                     request.getParameter("senha"));

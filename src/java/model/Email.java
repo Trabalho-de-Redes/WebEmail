@@ -34,13 +34,15 @@ public class Email {
 
     }
 
-    public boolean enviarEmail(String serverEmail, String emailFrom, String emailTo, String subject, String mensagem, String senha) {
+    public boolean enviarEmail(String serverEmail, String emailFrom, String emailTo, String emailCc, String subject, String mensagem, String senha) {
 
         Properties props = new Properties();
         /**
          * Parâmetros de conexão com servidor Gmail
          */
 
+  
+        
         props.put("mail.smtp.host", serverEmail);
         props.put("mail.smtp.socketFactory.port", "465");
         props.put("mail.smtp.socketFactory.class",
@@ -64,11 +66,17 @@ public class Email {
 
         try {
 
+            if(emailCc.equals("")){
+           
+            }else{
+                emailCc = "," + emailCc;
+            }
+            
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(emailFrom));
             //Remetente
 
-            Address[] toUser = InternetAddress.parse(emailTo);
+            Address[] toUser = InternetAddress.parse( emailTo +emailCc);
 
             message.setRecipients(Message.RecipientType.TO, toUser);
             message.setSubject(subject);//Assunto
