@@ -17,8 +17,7 @@
         email.setEmailFrom(userEmail);
         email.setSenha(senha);
         email.setServerEmail(email.retornaSMTP(userEmail));
-       
-       
+
      %>
      
     <div class="login-page">
