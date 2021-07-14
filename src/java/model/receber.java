@@ -20,7 +20,7 @@ public class receber {
         try {
             Properties props = new Properties();
             props.put("mail.store.protocol", "pop3s"); // Google uses POP3S not POP3
-            Session session = Session.getDefaultInstance(props);
+            Session session = Session.getInstance(props);
             // session.setDebug(true);
             store = session.getStore();
             store.connect(host, user, pass);
