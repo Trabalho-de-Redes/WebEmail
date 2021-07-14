@@ -18,10 +18,10 @@
 //        Email email = new Email();
 //        
 //        email.enviarEmail("smtp.gmail.com", "tbredescomputadores@gmail.com", "tbredescomputadores@gmail.com", "Teste", "olaa", "29072021");
-        
-    
-        
-        
+//        
+//    
+//        
+//        
 //        Properties props = new Properties();
 //        /**
 //         * Parâmetros de conexão com servidor Gmail
@@ -43,7 +43,7 @@
 //                                "29072021");
 //                    }
 //                });
-//
+
 //        /**
 //         * Ativa Debug para sessão
 //         */

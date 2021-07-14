@@ -5,15 +5,22 @@
  */
 package model;
 
+import java.io.File;
+import java.util.Date;
 import java.util.Properties;
+import javax.activation.DataHandler;
+import javax.activation.FileDataSource;
 import javax.mail.Address;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 
 /**
  *
@@ -41,8 +48,6 @@ public class Email {
          * Parâmetros de conexão com servidor Gmail
          */
 
-  
-        
         props.put("mail.smtp.host", serverEmail);
         props.put("mail.smtp.socketFactory.port", "465");
         props.put("mail.smtp.socketFactory.class",
@@ -66,21 +71,47 @@ public class Email {
 
         try {
 
-            if(emailCc.equals("")){
-           
-            }else{
+            if (emailCc.equals("")) {
+
+            } else {
                 emailCc = "," + emailCc;
             }
-            
+
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(emailFrom));
             //Remetente
 
-            Address[] toUser = InternetAddress.parse( emailTo +emailCc);
+            Address[] toUser = InternetAddress.parse(emailTo + emailCc);
 
+            //Assunto
             message.setRecipients(Message.RecipientType.TO, toUser);
-            message.setSubject(subject);//Assunto
-            message.setText(mensagem);
+            message.setSubject(subject);
+//            message.setText(mensagem);
+            // cria a primeira parte da mensagem
+            MimeBodyPart mbp1 = new MimeBodyPart();
+            mbp1.setText(mensagem);
+
+            // cria a segunda parte da mensage
+//            MimeBodyPart mbp2 = new MimeBodyPart();
+           
+          
+            
+            // anexa o arquivo na mensagem
+//            FileDataSource fds = new FileDataSource(filename);
+//            mbp2.setDataHandler(new DataHandler(fds));
+//            mbp2.setFileName(fds.getName());
+
+            // cria a Multipart
+//            Multipart mp = new MimeMultipart();
+//            mp.addBodyPart(mbp1);
+//            mp.addBodyPart(mbp2);
+
+            // adiciona a Multipart na mensagem
+//            message.setContent(mp);
+
+            // configura a data: cabecalho
+            message.setSentDate(new Date());
+
             /**
              * Método para enviar a mensagem criada
              */
@@ -93,13 +124,17 @@ public class Email {
         }
     }
 
-     public String retornaSMTP(String email) {
+    public String retornaSMTP(String email) {
 
-       String[] partir ;
-       
-       partir = email.split("@");
-       String smtp = "smtp."+partir[1];
-       return smtp;
+        String[] partir;
+
+        partir = email.split("@");
+        String smtp = "smtp." + partir[1];
+        
+        if(partir[1].equals("hotmail.com")){
+            return  "smtp.live.com";
+        }
+        return smtp;
     }
 
     public String getSenha() {

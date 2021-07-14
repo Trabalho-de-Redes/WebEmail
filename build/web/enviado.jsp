@@ -12,29 +12,35 @@
         <%
             Email email = new Email();
 
-            //        String userEmail = request.getParameter("email");
-            //        String senha = request.getParameter("senha");
-            //        String to = request.getParameter("to");
-            //        String subject = request.getParameter("subject");
-            //        String mensagem = request.getParameter("mensagem");
-            //        String mailServer = request.getParameter("mailServer");
-            //        
-            //        out.println("email: "+ userEmail);
-            //        out.println("senha:"+ senha);
-            //        out.println("msg:"+ mensagem);
-            //        out.println("Server:"+ mailServer);
-            //        out.println("sub: "+ subject);
-            //        out.println("to : " +to);
-            //        
+//                    String userEmail = request.getParameter("email");
+//                    String senha = request.getParameter("senha");
+//                    String to = request.getParameter("to");
+//                    String subject = request.getParameter("subject");
+//                    String mensagem = request.getParameter("mensagem");
+//                    String mailServer = request.getParameter("mailServer");
+//                    
+//                    out.println("email: "+ userEmail);
+//                    out.println("senha:"+ senha);
+//                    out.println("msg:"+ mensagem);
+//                    out.println("Server:"+ mailServer);
+//                    out.println("sub: "+ subject);
+//                    out.println("to : " +to);
+//            
+                    String nomeArq = request.getParameter("arq");
+                    
+                    out.println("Nome Arq: " + nomeArq);
+            
             boolean result = email.enviarEmail(request.getParameter("mailServer"),
                     request.getParameter("email"),
                     request.getParameter("to"),
                     request.getParameter("cc"),
                     request.getParameter("subject"),
                     request.getParameter("mensagem"),
-                    request.getParameter("senha"));
+                    request.getParameter("senha"),
+                    request.getParameter("arq"));
+            
 
-//            boolean result = true;
+            boolean result = true;
         %>
 
         <div class="login-page">
