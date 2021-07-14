@@ -26,9 +26,9 @@
 //                    out.println("sub: "+ subject);
 //                    out.println("to : " +to);
 //            
-                    String nomeArq = request.getParameter("arq");
-                    
-                    out.println("Nome Arq: " + nomeArq);
+//                    String nomeArq = request.getParameter("arq");
+//                    
+//                    out.println("Nome Arq: " + nomeArq);
             
             boolean result = email.enviarEmail(request.getParameter("mailServer"),
                     request.getParameter("email"),
@@ -36,11 +36,10 @@
                     request.getParameter("cc"),
                     request.getParameter("subject"),
                     request.getParameter("mensagem"),
-                    request.getParameter("senha"),
-                    request.getParameter("arq"));
+                    request.getParameter("senha"));
             
 
-            boolean result = true;
+//            boolean result = true;
         %>
 
         <div class="login-page">
