@@ -39,7 +39,7 @@
                     request.getParameter("senha"));
             
 
-//            boolean result = true;
+//           boolean result = true;
         %>
 
         <div class="login-page">
@@ -57,9 +57,6 @@
                 </h1>
                 <div class="login-form">
 
-
-                    <a  class="not-active" href="enviarEmail.jsp"><button>Caixa de Envio</button> </a> 
-                    <br>
                     <br>
                     <a  class="not-active" href="index.html"> <button>Sair</button> </a>
                 </div>

@@ -34,7 +34,7 @@
 
                 for (int i = 0; i < messages.length; ++i) {
             %>
-            <p><%out.println("MESSAGEM #" + (i + 1) + ":");%></p>
+            <p><%out.println("MENSSAGEM #" + (i + 1) + ":");%></p>
             <%
                 Message msg = messages[i];
                 String from = "unknown";

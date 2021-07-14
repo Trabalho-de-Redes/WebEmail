@@ -30,6 +30,7 @@
             <button>Caixa de Envio</button>
           </form>
             <br>
+            
             <form class="login-form" action="caixa_email.jsp" method="post">
                 <input name="email" hidden placeholder="Email" value="<% out.write(email.getEmailFrom());%>">
             <input name ="senha" hidden placeholder="Senha" value="<% out.write(email.getSenha());%>">

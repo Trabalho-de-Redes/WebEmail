@@ -102,12 +102,12 @@ public class Email {
 //            mbp2.setFileName(fds.getName());
 
             // cria a Multipart
-//            Multipart mp = new MimeMultipart();
-//            mp.addBodyPart(mbp1);
+            Multipart mp = new MimeMultipart();
+            mp.addBodyPart(mbp1);
 //            mp.addBodyPart(mbp2);
 
             // adiciona a Multipart na mensagem
-//            message.setContent(mp);
+            message.setContent(mp);
 
             // configura a data: cabecalho
             message.setSentDate(new Date());
