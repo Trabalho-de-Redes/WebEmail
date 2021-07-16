@@ -8,7 +8,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-            <link rel="stylesheet" href="login_1.css" class="style">
+        <link rel="stylesheet" href="login_1.css" class="style">
         <title>Caixa de Entrada</title>
     </head>
     <body>
@@ -18,12 +18,12 @@
             <h1>Caixa de Entrada </h1>
             <hr>
             <%
-               
+
                 receber msgs = new receber();
                 String email = request.getParameter("email");
-                
-                Message[] messages = msgs.doit(msgs.retornaPop(email) ,email, 
-                       request.getParameter("senha"));
+
+                Message[] messages = msgs.doit(msgs.retornaPop(email), email,
+                        request.getParameter("senha"));
 
                 if (messages.equals(null)) {
             %> 
