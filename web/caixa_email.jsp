@@ -1,8 +1,8 @@
 
 <%@page import="java.util.Date"%>
 <%@page import="javax.mail.Message"%>
-<%@page import="model.receber"%>
-<%@page import="model.Email"%>
+<%@page import="util.receber"%>
+<%@page import="util.Email"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -45,11 +45,11 @@
                     from = msg.getFrom()[0].toString();
                 }
                 String subject = msg.getSubject();
-              
+                String text = msg.getContent().toString();
 
 
             %> <p> <% out.println("Assunto: " + subject); %> </p> 
-            <p> <% out.println("Mensagem: ");%> </p>
+            <p> <% out.println("Mensagem: " + text);%> </p>
             <p> <% out.println("De: " + from); %></p> 
             <hr>
 
