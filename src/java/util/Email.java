@@ -23,20 +23,22 @@ import javax.mail.internet.MimeMultipart;
  */
 public class Email {
 
-    public static void enviarEmail(String serverEmail, String emailFrom, String emailTo, String emailCc, String subject, String mensagem, String senha, List<File> attachedFiles) {
+    public static boolean enviarEmail(String serverEmail, String emailFrom, String emailTo, String emailCc, String subject, String mensagem, String senha, List<File> attachedFiles) {
 
         Properties props = new Properties();
         /**
          * Parâmetros de conexão com servidor Gmail
          */
-
-        props.put("mail.smtp.host", serverEmail);
+        props.put("mail.transport.protocol", "smtp");
+        props.put("mail.smtp.host", serverEmail);                      
         props.put("mail.smtp.socketFactory.port", "465");
-        props.put("mail.smtp.socketFactory.class",
-                "javax.net.ssl.SSLSocketFactory");
+        props.put("mail.smtp.socketFactory.fallback", "false");
+        props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.port", "465");
 
+        
+            
         Session session = Session.getInstance(props,
                 new javax.mail.Authenticator() {
                     @Override
@@ -97,10 +99,10 @@ public class Email {
 
             Transport.send(message);
 
-            System.out.println("E-mail Enviado");
+            return true;
 
         } catch (MessagingException e) {
-            System.out.println("Erro ao enviar");
+           return false;
         }
     }
 

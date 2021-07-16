@@ -55,10 +55,14 @@
 
             <%
 
-                        // you may want to replace the spaces with "_"
-                        // the files will be saved into the TEMP directory
+                      
                     }
                 }%>
+                 <div class="login-form" >
+
+                    <br>
+                    <a class="not-active" href="index.html"> <button>Sair</button> </a>
+                </div>
         </div>
 
 

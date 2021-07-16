@@ -50,9 +50,13 @@ public class ControllerEmail extends HttpServlet {
 
         try {
 
-            Email.enviarEmail(mailServer, userEmail, to, "", subject, mensagem, senha, uploadedFiles);
+          Boolean result =  Email.enviarEmail(mailServer, userEmail, to, "", subject, mensagem, senha, uploadedFiles);
 
-            resultMessage = "O E-mail foi enviado com sucesso!";
+            if(result){
+                resultMessage = "O E-mail foi enviado com sucesso!";
+            }
+             
+                
         } catch (Exception ex) {
             ex.printStackTrace();
             resultMessage = "There were an error: " + ex.getMessage();
