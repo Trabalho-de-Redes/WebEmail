@@ -54,6 +54,8 @@ public class ControllerEmail extends HttpServlet {
 
             if(result){
                 resultMessage = "O E-mail foi enviado com sucesso!";
+            }else{
+                resultMessage = "Erro classe de Envio";
             }
              
                 
