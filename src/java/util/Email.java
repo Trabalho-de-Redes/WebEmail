@@ -29,15 +29,15 @@ public class Email {
          * Parâmetros de conexão com servidor Gmail
          */
 
-        if(!serverEmail.equals("smtp.live.com")){
-        props.put("mail.smtp.host", serverEmail);
-        props.put("mail.smtp.socketFactory.port", "465");
-        props.put("mail.smtp.socketFactory.class",
-                "javax.net.ssl.SSLSocketFactory");
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.port", "465");
+        if (!serverEmail.equals("smtp.live.com")) {
+            props.put("mail.smtp.host", serverEmail);
+            props.put("mail.smtp.socketFactory.port", "465");
+            props.put("mail.smtp.socketFactory.class",
+                    "javax.net.ssl.SSLSocketFactory");
+            props.put("mail.smtp.auth", "true");
+            props.put("mail.smtp.port", "465");
 
-        }else{
+        } else if (serverEmail.equals("smtp.live.com")) {
             props.put("mail.transport.protocol", "smtp");
             props.put("mail.smtp.host", serverEmail);
             props.put("mail.smtp.socketFactory.port", "587");
@@ -45,9 +45,8 @@ public class Email {
             props.put("mail.smtp.starttls.enable", "true");
             props.put("mail.smtp.auth", "true");
             props.put("mail.smtp.port", "587");
-        }
-
-
+        } 
+        
         Session session = Session.getInstance(props,
                 new javax.mail.Authenticator() {
                     @Override
@@ -125,8 +124,10 @@ public class Email {
         if (partir[1].equals("hotmail.com")) {
             return "smtp.live.com";
         }
+        if (partir[1].equals("yahoo.com")) {
+            return "smtp.mail.yahoo.com";
+        }
         return smtp;
     }
-
 
 }
