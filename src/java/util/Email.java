@@ -22,7 +22,7 @@ import javax.mail.internet.MimeMultipart;
  */
 public class Email {
 
-    public static boolean enviarEmail(String serverEmail, String emailFrom, String emailTo, String emailCc, String subject, String mensagem, String senha, List<File> attachedFiles) {
+    public static boolean enviarEmail(String serverEmail, String emailFrom, String emailTo, String emailCc,String emailBcc, String subject, String mensagem, String senha, List<File> attachedFiles) {
 
         Properties props = new Properties();
         /**
@@ -63,20 +63,18 @@ public class Email {
 
         try {
 
-            if (emailCc.equals("")) {
-
-            } else {
-                emailCc = "," + emailCc;
-            }
 
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(emailFrom));
             //Remetente
 
-            Address[] toUser = InternetAddress.parse(emailTo + emailCc);
-
+            Address[] toUser = InternetAddress.parse(emailTo);
+            Address[] toCc = InternetAddress.parse(emailCc);
+            Address[] toBcc = InternetAddress.parse(emailBcc);
             //Assunto
             message.setRecipients(Message.RecipientType.TO, toUser);
+            message.setRecipients(Message.RecipientType.CC, toCc);
+            message.setRecipients(Message.RecipientType.BCC, toBcc);
             message.setSubject(subject);
 
             // Criando mensagem particionada

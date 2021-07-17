@@ -33,7 +33,12 @@ public class ControllerEmail extends HttpServlet {
 
     /**
      * handles form submission
+     * @param request
+     * @param response
+     * @throws javax.servlet.ServletException
+     * @throws java.io.IOException
      */
+    @Override
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
 
@@ -42,6 +47,8 @@ public class ControllerEmail extends HttpServlet {
         String userEmail = request.getParameter("email");
         String senha = request.getParameter("senha");
         String to = request.getParameter("to");
+        String cc = request.getParameter("cc");
+        String bcc = request.getParameter("bcc");
         String subject = request.getParameter("subject");
         String mensagem = request.getParameter("mensagem");
         String mailServer = request.getParameter("mailServer");
@@ -50,7 +57,7 @@ public class ControllerEmail extends HttpServlet {
 
         try {
 
-          Boolean result =  Email.enviarEmail(mailServer, userEmail, to, "", subject, mensagem, senha, uploadedFiles);
+          Boolean result =  Email.enviarEmail(mailServer, userEmail, to, cc,bcc, subject, mensagem, senha, uploadedFiles);
 
             if(result){
                 resultMessage = "O E-mail foi enviado com sucesso!";
@@ -60,7 +67,6 @@ public class ControllerEmail extends HttpServlet {
              
                 
         } catch (Exception ex) {
-            ex.printStackTrace();
             resultMessage = "There were an error: " + ex.getMessage();
         } finally {
             deleteUploadFiles(uploadedFiles);
@@ -76,7 +82,7 @@ public class ControllerEmail extends HttpServlet {
      */
     private List<File> saveUploadedFiles(HttpServletRequest request)
             throws IllegalStateException, IOException, ServletException {
-        List<File> listFiles = new ArrayList<File>();
+        List<File> listFiles = new ArrayList<>();
         byte[] buffer = new byte[4096];
         int bytesRead = -1;
         Collection<Part> multiparts = request.getParts();
