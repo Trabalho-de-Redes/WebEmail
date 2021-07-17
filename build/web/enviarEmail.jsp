@@ -23,12 +23,12 @@
 
                     <input id="server" type="text" name="mailServer" readonly="readonly" value="<% out.write(mailServer); %>"/>
                     <input id="from" type="text" readonly="readonly" name="email"  value="<% out.write(userEmail); %>"/>
-                    <input id="to" type="text"  name="to" placeholder="To"/>
+                    <input id="to" type="text"  name="to" placeholder="To" required/>
                     <input id="cc" type="text" name="cc" placeholder="Cc"/>
                     <input id="bcc" type="text" name="bcc" placeholder="Bcc"/>
                     <input id="subj" type="text" name="subject" placeholder="Subject"/>
                     <textarea  name="mensagem"  id="msg" cols="30" rows="10" placeholder="Mensagem"></textarea>
-                    <input id="file" name="file" type="file">
+                    <input id="file" name="file" type="file" multiple>
 
                     <input name="senha" hidden readonly="readonly" value="<% out.write(senha);%>">
                     <button>Enviar</button>
