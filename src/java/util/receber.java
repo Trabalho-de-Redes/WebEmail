@@ -67,6 +67,9 @@ public class receber {
         if (partir[1].equals("hotmail.com")) {
             return "pop.live.com";
         }
+           if (partir[1].equals("yahoo.com")) {
+            return "pop.mail.yahoo.com";
+        }
         return pop;
     }
 
