@@ -19,7 +19,14 @@
                 <div class="login-form" >
 
                     <br>
+                    <button onclick="history.go(-1)">Caixa Envio</button>
+                    <br>
+                    <br>
+                    <button onclick="history.go(-2)">Menu</button>
+                    <br>
+                    <br>
                     <a class="not-active" href="index.html"> <button>Sair</button> </a>
+
                 </div>
             </div>
         </div>

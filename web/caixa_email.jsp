@@ -1,4 +1,5 @@
 
+<%@page import="javax.mail.Multipart"%>
 <%@page import="java.util.Date"%>
 <%@page import="javax.mail.Message"%>
 <%@page import="util.receber"%>
@@ -18,12 +19,11 @@
             <h1>Caixa de Entrada </h1>
             <hr>
             <%
-
                 receber msgs = new receber();
                 String email = request.getParameter("email");
-
+                String senha = request.getParameter("senha");
                 Message[] messages = msgs.doit(msgs.retornaPop(email), email,
-                        request.getParameter("senha"));
+                        senha);
 
                 if (messages.equals(null)) {
             %> 
@@ -45,26 +45,33 @@
                     from = msg.getFrom()[0].toString();
                 }
                 String subject = msg.getSubject();
-                String text = msg.getContent().toString();
 
+                Object mult = msg.getContent();
+                String text = "";
+                if (mult instanceof Multipart) {
+                    text = "Mensagem contém varias partes, verificar no seu provedor";
+                } else {
+                    text = msg.getContent().toString();
+                }
 
-            %> <p> <% out.println("Assunto: " + subject); %> </p> 
-            <p> <% out.println("Mensagem: " + text);%> </p>
+            %>
             <p> <% out.println("De: " + from); %></p> 
+            <p> <% out.println("Assunto: " + subject); %> </p> 
+            <p> <% out.println("Mensagem: " + text);%> </p>
             <hr>
 
             <%
 
-                      
                     }
                 }%>
-                 <div class="login-form" >
+            <div class="login-form" >
 
-                    <br>
-                    <a class="not-active" href="index.html"> <button>Sair</button> </a>
-                </div>
+                <br>
+                <button onclick="history.go(-1)">Menu</button>
+                <br>
+                <br>
+                <a class="not-active" href="index.html"> <button>Sair</button></a>
+            </div>
         </div>
-
-
     </body>   
 </html>
