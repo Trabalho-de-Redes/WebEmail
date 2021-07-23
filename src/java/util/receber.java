@@ -27,28 +27,11 @@ public class receber {
             folder = store.getDefaultFolder().getFolder("INBOX");
             folder.open(Folder.READ_ONLY);
             Message[] messages = folder.getMessages();
-            System.out.println("No of Messages : " + folder.getMessageCount());
-            System.out.println("No of Unread Messages : " + folder.getUnreadMessageCount());
+            System.out.println("Numero de mensagens : " + folder.getMessageCount());
+            System.out.println("Numero de mensagens não lidas: " + folder.getUnreadMessageCount());
 
             return messages;
-//      for (int i=0; i < messages.length; ++i) {
-//        System.out.println("MESSAGE #" + (i + 1) + ":");
-//        Message msg = messages[i];
-//        String from = "unknown";
-//        if (msg.getReplyTo().length >= 1) {
-//          from = msg.getReplyTo()[0].toString();
-//        }
-//        else if (msg.getFrom().length >= 1) {
-//          from = msg.getFrom()[0].toString();
-//        }
-//        String subject = msg.getSubject();
-//        
-//       
-//        System.out.println("Saving ... " + subject +" " + from);
 
-        // you may want to replace the spaces with "_"
-            // the files will be saved into the TEMP directory
-//      }
         } catch (Exception e) {
 
             return null;
@@ -57,17 +40,18 @@ public class receber {
 
     }
 
+    //retorna Pop referente ao e-mail
     public String retornaPop(String email) {
 
         String[] partir;
 
         partir = email.split("@");
         String pop = "pop." + partir[1];
-        
+
         if (partir[1].equals("hotmail.com")) {
             return "pop.live.com";
         }
-           if (partir[1].equals("yahoo.com")) {
+        if (partir[1].equals("yahoo.com")) {
             return "pop.mail.yahoo.com";
         }
         return pop;

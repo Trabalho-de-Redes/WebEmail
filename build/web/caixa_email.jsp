@@ -1,4 +1,3 @@
-
 <%@page import="javax.mail.Multipart"%>
 <%@page import="java.util.Date"%>
 <%@page import="javax.mail.Message"%>
@@ -61,11 +60,10 @@
             <hr>
 
             <%
-
                     }
                 }%>
-            <div class="login-form" >
 
+            <div class="login-form" >
                 <br>
                 <button onclick="history.go(-1)">Menu</button>
                 <br>

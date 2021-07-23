@@ -22,7 +22,7 @@ import javax.mail.internet.MimeMultipart;
  */
 public class Email {
 
-    public static boolean enviarEmail(String serverEmail, String emailFrom, String emailTo, String emailCc,String emailBcc, String subject, String mensagem, String senha, List<File> attachedFiles) {
+    public static boolean enviarEmail(String serverEmail, String emailFrom, String emailTo, String emailCc, String emailBcc, String subject, String mensagem, String senha, List<File> attachedFiles) {
 
         Properties props = new Properties();
         /**
@@ -45,8 +45,8 @@ public class Email {
             props.put("mail.smtp.starttls.enable", "true");
             props.put("mail.smtp.auth", "true");
             props.put("mail.smtp.port", "587");
-        } 
-        
+        }
+
         Session session = Session.getInstance(props,
                 new javax.mail.Authenticator() {
                     @Override
@@ -62,7 +62,6 @@ public class Email {
         session.setDebug(true);
 
         try {
-
 
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(emailFrom));
@@ -111,6 +110,8 @@ public class Email {
             return false;
         }
     }
+
+    //Retorna SMTP referente ao e-mail 
 
     public static String retornaSMTP(String email) {
 

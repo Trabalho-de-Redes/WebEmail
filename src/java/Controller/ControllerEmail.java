@@ -17,15 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import util.Email;
 
-/**
- * A servlet that takes message details from user and send it as a new e-mail
- * through an SMTP server. The e-mail message may contain attachments which are
- * the files uploaded from client.
- *
- * @author www.codejava.net
- *
- */
-@WebServlet("/SendMailAttachServlet")
+@WebServlet("/EnviarMailAnexadoServlet")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
         maxFileSize = 1024 * 1024 * 10, // 10MB
         maxRequestSize = 1024 * 1024 * 50)      // 50MB
@@ -33,6 +25,7 @@ public class ControllerEmail extends HttpServlet {
 
     /**
      * handles form submission
+     *
      * @param request
      * @param response
      * @throws javax.servlet.ServletException
@@ -57,17 +50,16 @@ public class ControllerEmail extends HttpServlet {
 
         try {
 
-          Boolean result =  Email.enviarEmail(mailServer, userEmail, to, cc,bcc, subject, mensagem, senha, uploadedFiles);
+            Boolean result = Email.enviarEmail(mailServer, userEmail, to, cc, bcc, subject, mensagem, senha, uploadedFiles);
 
-            if(result){
+            if (result) {
                 resultMessage = "O E-mail foi enviado com sucesso!";
-            }else{
-                resultMessage = "Erro classe de Envio";
+            } else {
+                resultMessage = "Ocorreu um erro no envio";
             }
-             
-                
+
         } catch (Exception ex) {
-            resultMessage = "There were an error: " + ex.getMessage();
+            resultMessage = "Error " + ex.getMessage();
         } finally {
             deleteUploadFiles(uploadedFiles);
             request.setAttribute("message", resultMessage);
@@ -76,10 +68,6 @@ public class ControllerEmail extends HttpServlet {
         }
     }
 
-    /**
-     * Saves files uploaded from the client and return a list of these files
-     * which will be attached to the e-mail message.
-     */
     private List<File> saveUploadedFiles(HttpServletRequest request)
             throws IllegalStateException, IOException, ServletException {
         List<File> listFiles = new ArrayList<>();
@@ -88,10 +76,10 @@ public class ControllerEmail extends HttpServlet {
         Collection<Part> multiparts = request.getParts();
         if (multiparts.size() > 0) {
             for (Part part : request.getParts()) {
-                // creates a file to be saved
+                // cria um arquivo a ser salvo
                 String fileName = extractFileName(part);
                 if (fileName == null || fileName.equals("")) {
-                    // not attachment part, continue
+                    // não é parte do anexo, continue
                     continue;
                 }
 
@@ -99,7 +87,7 @@ public class ControllerEmail extends HttpServlet {
                 System.out.println("saveFile: " + saveFile.getAbsolutePath());
                 FileOutputStream outputStream = new FileOutputStream(saveFile);
 
-                // saves uploaded file
+                // salva o arquivo enviado
                 InputStream inputStream = part.getInputStream();
                 while ((bytesRead = inputStream.read(buffer)) != -1) {
                     outputStream.write(buffer, 0, bytesRead);
@@ -113,9 +101,7 @@ public class ControllerEmail extends HttpServlet {
         return listFiles;
     }
 
-    /**
-     * Retrieves file name of a upload part from its HTTP header
-     */
+      //Recupera o nome do arquivo de uma parte de upload de seu cabeçalho HTTP
     private String extractFileName(Part part) {
         String contentDisp = part.getHeader("content-disposition");
         String[] items = contentDisp.split(";");
@@ -127,9 +113,7 @@ public class ControllerEmail extends HttpServlet {
         return null;
     }
 
-    /**
-     * Deletes all uploaded files, should be called after the e-mail was sent.
-     */
+    // Exclui todos os arquivos carregados, deve ser chamado após o envio do e-mail.
     private void deleteUploadFiles(List<File> listFiles) {
         if (listFiles != null && listFiles.size() > 0) {
             for (File aFile : listFiles) {

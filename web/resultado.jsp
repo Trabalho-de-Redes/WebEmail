@@ -12,10 +12,10 @@
         <div class="login-page">
             <div class="form" >
 
-
                 <h1>
                     ${requestScope.message}
                 </h1>
+
                 <div class="login-form" >
 
                     <br>
