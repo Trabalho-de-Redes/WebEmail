@@ -19,7 +19,7 @@ public class receber {
         Store store = null;
         try {
             Properties props = new Properties();
-        if (pop.equals("pop.gmail.com")) {
+        if (!pop.equals("pop.live.com")) {
             props.put("mail.store.protocol", "pop3s"); // Google usa POP3S
         }else{
               props.put("mail.store.protocol", "pop3");

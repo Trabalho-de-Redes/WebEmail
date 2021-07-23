@@ -57,7 +57,7 @@
             <p> <% out.println("De: " + from); %></p> 
             <p> <% out.println("Assunto: " + subject); %> </p> 
             <p> <% out.println("Mensagem: " + text);%> </p>
-             <p> <% out.println("Data de Envio: " + dataEnvio);%> </p>
+            <p> <% out.println("Data de Envio: " + dataEnvio);%> </p>
             <hr>
 
             <%
