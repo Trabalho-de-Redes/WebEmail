@@ -19,7 +19,11 @@ public class receber {
         Store store = null;
         try {
             Properties props = new Properties();
-            props.put("mail.store.protocol", "pop3s"); // Google uses POP3S not POP3
+        if (pop.equals("pop.gmail.com")) {
+            props.put("mail.store.protocol", "pop3s"); // Google usa POP3S
+        }else{
+              props.put("mail.store.protocol", "pop3");
+        }
             Session session = Session.getInstance(props);
             // session.setDebug(true);
             store = session.getStore();

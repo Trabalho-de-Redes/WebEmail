@@ -44,7 +44,7 @@
                     from = msg.getFrom()[0].toString();
                 }
                 String subject = msg.getSubject();
-
+                String dataEnvio = msg.getSentDate().toString();
                 Object mult = msg.getContent();
                 String text = "";
                 if (mult instanceof Multipart) {
@@ -57,6 +57,7 @@
             <p> <% out.println("De: " + from); %></p> 
             <p> <% out.println("Assunto: " + subject); %> </p> 
             <p> <% out.println("Mensagem: " + text);%> </p>
+             <p> <% out.println("Data de Envio: " + dataEnvio);%> </p>
             <hr>
 
             <%
