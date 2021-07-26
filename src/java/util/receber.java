@@ -1,5 +1,6 @@
 package util;
 
+import com.sun.mail.pop3.POP3SSLStore;
 import java.io.*;
 import java.util.*;
 import javax.mail.*;
@@ -14,18 +15,26 @@ public class receber {
         host = pop;
         user = email;
         pass = senha;
-
+        String porta = "995";
         Folder folder = null;
         Store store = null;
+   
         try {
-            Properties props = new Properties();
+
+        Properties prop = new Properties();
+        
         if (!pop.equals("pop.live.com")) {
-            props.put("mail.store.protocol", "pop3s"); // Google usa POP3S
+            prop.put("mail.store.protocol", "pop3s"); // Google usa POP3S
         }else{
-              props.put("mail.store.protocol", "pop3");
+        prop.setProperty("mail.pop3.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        prop.setProperty("mail.pop3.socketFactory.fallback", "false");
+        prop.setProperty("mail.pop3.port", porta);
+        prop.setProperty("mail.pop3.socketFactory.port", porta);
+        prop.setProperty("mail.pop3.host", host);
+        prop.setProperty("mail.store.protocol", pop);
         }
-            Session session = Session.getInstance(props);
-            // session.setDebug(true);
+            Session session = Session.getInstance(prop);
+             session.setDebug(true);
             store = session.getStore();
             store.connect(host, user, pass);
             folder = store.getDefaultFolder().getFolder("INBOX");
