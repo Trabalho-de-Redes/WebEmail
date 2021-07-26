@@ -31,11 +31,17 @@ public class receber {
         prop.setProperty("mail.pop3.port", porta);
         prop.setProperty("mail.pop3.socketFactory.port", porta);
         prop.setProperty("mail.pop3.host", host);
-        prop.setProperty("mail.store.protocol", pop);
+        prop.setProperty("mail.store.protocol", host);
         }
             Session session = Session.getInstance(prop);
-             session.setDebug(true);
+//            session.setDebug(true);
             store = session.getStore();
+                    if (!pop.equals("pop.live.com")) {
+                          store.connect(host, 995, user, pass);
+       // Google usa POP3S
+        }else{
+                          store.connect(host, user, pass);
+                    }
             store.connect(host, user, pass);
             folder = store.getDefaultFolder().getFolder("INBOX");
             folder.open(Folder.READ_ONLY);
